@@ -1,4 +1,4 @@
-// FUNCTION IMPLEMENTATION
+/*comment out for lotide refactor
 const assertEqual = function(actual, expected) {
   if (actual === expected) {
     console.log(`✅✅✅pass✅✅✅: ${actual} = ${expected}`);
@@ -6,6 +6,9 @@ const assertEqual = function(actual, expected) {
     console.log(`🛑🛑🛑fail🛑🛑🛑: ${actual} != ${expected}`);
   }
 };
+*/
+
+const assertEqual = require('./assertEqual');
 
 const head = function(arr) {
   if (arr.length > 0) {
@@ -15,12 +18,4 @@ const head = function(arr) {
   }
 };
 
-// TEST CODE
-const runTest = function() {
-  assertEqual(head([5, 6, 7]), 5); // array with multiple elements --- pass
-  assertEqual(head(["Hello", "Lighthouse", "Labs"]), "Hello"); // array of strings -- passss 
-  assertEqual(head([19]), 20); //array with one element -- fails
-  assertEqual(head([]), undefined); // empty array ---  passss
-};
-
-runTest();
+module.exports = head;
