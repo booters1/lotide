@@ -1,10 +1,14 @@
-const assertEqual = function(actual, expected) {
+/* 
+  const assertEqual = function(actual, expected) {
   if (actual === expected) {
     console.log(`✅✅✅pass✅✅✅: ${actual} = ${expected}`);
   } else {
     console.log(`🛑🛑🛑fail🛑🛑🛑: ${actual} != ${expected}`);
   }
 };
+*/
+
+const assertEqual = require('./assertEqual');
 
 const eqArrays = function(array1, array2) {
   // if the length arrays are different
@@ -20,8 +24,11 @@ const eqArrays = function(array1, array2) {
   return true;
 };
 
+module.exports = eqArrays;
+/*
 // test cases 
 assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); 
 assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false);
 assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true);
 assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false);
+*/
