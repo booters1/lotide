@@ -18,13 +18,7 @@ const letterPositions = function(sentence) {
 
 const assertEqual = require('./assertEqual');
 const eqArrays = require('./eqArrays');
-
-
-const assertArraysEqual = function(actual, expected) {
-  const message = eqArrays(actual, expected) ? '✅✅✅pass✅✅✅' : '🛑🛑🛑fail🛑🛑🛑';
-  console.log(`${message}: [${actual}] === [${expected}]`);
-};
-
+const assertArraysEqual = require('./assertArraysEqual');
 
 // Test for the string "hello"
 assertArraysEqual(letterPositions("hello").h, [0]);
