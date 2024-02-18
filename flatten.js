@@ -25,7 +25,7 @@ const flatten = function(arr) {
     // check for arrays
     if (Array.isArray(element)) {
       // combining of the arrays
-      flattenedArray = flattenedArray.concat(flatten(element));
+      flattenedArray = flattenedArray.concat(element);
     } else {
       // any elements are added to flattened
       flattenedArray.push(element);
