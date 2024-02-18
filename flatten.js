@@ -1,4 +1,4 @@
-const eqArrays = function(array1, array2) {
+/*const eqArrays = function(array1, array2) {
   // if the length arrays are different
   if (array1.length !== array2.length) {
     return false;
@@ -11,13 +11,16 @@ const eqArrays = function(array1, array2) {
   }
   return true;
 };
+*/
+const assertEqual = require('./assertEqual');
+const eqArrays = require('./eqArrays');
 
-
-
-const assertArraysEqual = function(actual, expected) {
+/*const assertArraysEqual = function(actual, expected) {
   const message = eqArrays(actual, expected) ? '✅✅✅pass✅✅✅' : '🛑🛑🛑fail🛑🛑🛑';
   console.log(`${message}: [${actual}] === [${expected}]`);
 };
+  */
+
 // start with empty array, loop thru it, and check for array and combine 
 const flatten = function(arr) {
   let flattenedArray = [];
@@ -37,3 +40,5 @@ const flatten = function(arr) {
 
 //test case
 console.log(flatten([1, 2, [3, 4], 5, [6]])); //=> [1, 2, 3, 4, 5, 6]
+
+module.exports = flatten;
