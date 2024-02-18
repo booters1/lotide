@@ -18,9 +18,20 @@ const assertArraysEqual = function(actual, expected) {
   const message = eqArrays(actual, expected) ? '✅✅✅pass✅✅✅' : '🛑🛑🛑fail🛑🛑🛑';
   console.log(`${message}: [${actual}] === [${expected}]`);
 };
-
+// start with empty array, loop thru it, and check for array and combine 
 const flatten = function(arr) {
-//implement flatten 
+  let flattenedArray = [];
+  for (const element of arr) {
+    // check for arrays
+    if (Array.isArray(element)) {
+      // combining of the arrays
+      flattenedArray = flattenedArray.concat(flatten(element));
+    } else {
+      // any elements are added to flattened
+      flattenedArray.push(element);
+    }
+  }
+  return flattenedArray;
 };
 
 
