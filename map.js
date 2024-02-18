@@ -25,5 +25,5 @@ const test3 = map(words, word => word[0]);
 assertArraysEqual(test3, ['g', 'c', 't', 'm', 't']);
 
 //Map each word to last letter
-const result4 = map(words, word => word[word.length - 1]);
-assertArraysEqual(result4, ['d', 'l', 'o', 'r', 'm']);
+const test4 = map(words, word => word[word.length - 1]);
+assertArraysEqual(test4, ['d', 'l', 'o', 'r', 'm']);
