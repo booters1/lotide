@@ -34,9 +34,34 @@ const eqObjects = function(object1, object2) {
   if (keys1.length !== keys2.length) {
     return false;
   }
-  
+  // check through key 1 
+  for (const key of keys1) {
+    // check corresponding key in other object -- if not , return false
+    if (!object2.hasOwnProperty(key)) {
+      return false;
+    }
+      
+    // value given to keys to compare if they are same same or different
+    const value1 = object1[key];
+    const value2 = object2[key];
+      
+    // if value 1 = value 2 , we will compare using eqArrays func
+    if (Array.isArray(value1) && Array.isArray(value2)) {
+      if (!eqArrays(value1, value2)) {
+        return false;
+      }
+    } else {
+      // if value 1 =/= value 2, compare by value
+      if (value1 !== value2) {
+        return false;
+      }
+    }
+  }
+    
+    // if same same , return true
+    return true;
+  };
 
-};
 // TEST CODE
 const shirtObject = { color: "red", size: "medium" };
 const anotherShirtObject= { size: "medium", color: "red" };
@@ -47,7 +72,7 @@ eqObjects(shirtObject , anotherShirtObject); // => true
 assertEqual(eqObjects(shirtObject , anotherShirtObject), true);
 
 const longSleeveShirtObject= { size: "medium", color: "red", sleeveLength: "long" };
-eqObjects(shirtObject , longSleeveShirtObject); // => false
+assertEqual(eqObjects(shirtObject , longSleeveShirtObject), false); // => false
 assertEqual(eqObjects(shirtObject , longSleeveShirtObject), false);
 
 // TEST CODES 2
