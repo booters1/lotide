@@ -16,6 +16,7 @@ const eqArrays = function(array1, array2) {
   for (let i = 0; i < array1.length; i++) {
     if (array1[i] !== array2[i]) {
       return false;
+      break;
     }
   }
   return true;
@@ -33,26 +34,15 @@ const eqObjects = function(object1, object2) {
   //implement comparison, if both are diff = false
   if (keys1.length !== keys2.length) {
     return false;
-  }
-  // check through key 1 
-  for (const key of keys1) {
-    // check corresponding key in other object -- if not , return false
-    if (!object2.hasOwnProperty(key)) {
-      return false;
-    }
       
-    // value given to keys to compare if they are same same or different
-    const value1 = object1[key];
-    const value2 = object2[key];
-      
-    // if value 1 = value 2 , we will compare using eqArrays func
-    if (Array.isArray(value1) && Array.isArray(value2)) {
-      if (!eqArrays(value1, value2)) {
+    // if key 1 = key 2 , we will compare using eqArrays func
+    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+      if (!eqArrays(object1[key], object2[key])) {
         return false;
       }
     } else {
-      // if value 1 =/= value 2, compare by value
-      if (value1 !== value2) {
+      // if key 1 =/= key 2, compare by value
+      if (object1[key] !== object2[key]) {
         return false;
       }
     }
@@ -65,7 +55,6 @@ const eqObjects = function(object1, object2) {
 // TEST CODE
 const shirtObject = { color: "red", size: "medium" };
 const anotherShirtObject= { size: "medium", color: "red" };
-eqObjects(shirtObject , anotherShirtObject); // => true
 
 
 //We need to use that return value in combination with assertEquals to test if the function is working correctly.
