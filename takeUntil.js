@@ -26,10 +26,8 @@ const eqArrays = function(array1, array2) {
   return true;
 };
 
-const assertArraysEqual = function(actual, expected) {
-  const message = eqArrays(actual, expected) ? '✅✅✅pass✅✅✅' : '🛑🛑🛑fail🛑🛑🛑';
-  console.log(`${message}: [${actual}] === [${expected}]`);
-};
+const assertArraysEqual = require('./assertArraysEqual');
+
 
 //test caSES
 const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
@@ -47,3 +45,5 @@ Expected Output
 --
 [ 'I\'ve', 'been', 'to', 'Hollywood' ]
 */
+
+module.exports = takeUntil;

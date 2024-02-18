@@ -1,25 +1,6 @@
-// FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  if (actual === expected) {
-    console.log(`✅✅✅pass✅✅✅: ${actual} = ${expected}`);
-  } else {
-    console.log(`🛑🛑🛑fail🛑🛑🛑: ${actual} != ${expected}`);
-  }
-};
 
-const eqArrays = function(array1, array2) {
-  // if the length arrays are different
-  if (array1.length !== array2.length) {
-    return false;
-  }
-  // check inside array
-  for (let i = 0; i < array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      return false;
-    }
-  }
-  return true;
-};
+const assertEqual = require('./assertEqual');
+const eqArrays = require('./eqArrays');
 
 // eqObjects function compare two objects if they are equal
 // Otherwise you get back a big fat false!
@@ -71,6 +52,8 @@ assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 2 }, b: 2 }), true); //fa
 assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 3 }), true); //fail
 assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // fail
 assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), true); //fail
+
+module.exports = eqObjects;
 
 
 /* OLD TEST CODE
