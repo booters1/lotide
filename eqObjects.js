@@ -37,18 +37,19 @@ const eqObjects = function(object1, object2) {
   }
       
     // if key 1 = key 2 , we will compare using eqArrays func
-  if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
-    if (!eqArrays(object1[key], object2[key])) {
-      return false;
-    }
-  } else {
-    // if key 1 =/= key 2, compare by value
-    if (object1[key] !== object2[key]) {
-      return false;
+  for (const key of keys1) {
+    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+      if (!eqArrays(object1[key], object2[key])) {
+        return false;
+      }
+    } else {
+      // if key 1 =/= key 2, compare by value
+      if (object1[key] !== object2[key]) {
+        return false;
+      }
     }
   }
-  
-  // if same same , return true
+    // if same same , return true
   return true;
 };
 
