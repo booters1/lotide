@@ -16,7 +16,6 @@ const eqArrays = function(array1, array2) {
   for (let i = 0; i < array1.length; i++) {
     if (array1[i] !== array2[i]) {
       return false;
-      break;
     }
   }
   return true;
@@ -36,23 +35,45 @@ const eqObjects = function(object1, object2) {
     return false;
   }
       
-    // if key 1 = key 2 , we will compare using eqArrays func
+    // first check the values of the keys for obj then check for arr, then for value
   for (const key of keys1) {
-    if (Array.isArray(object1[key]) && Array.isArray(object2[key])) {
+    // check value of current object1.key is an object
+    if (typeof object1[key] == 'object' && !Array.isArray(object1[key])) {
+      // use !eqObjects, within nested obj
+      if (!eqObjects(object1[key], object2[key])) {
+        return false;
+      }
+    } 
+    // check value of object.key1 is in array
+    else if (Array.isArray(object1[key])) {
+      // equality check of keys
       if (!eqArrays(object1[key], object2[key])) {
         return false;
       }
-    } else {
-      // if key 1 =/= key 2, compare by value
-      if (object1[key] !== object2[key]) {
-        return false;
-      }
+    } 
+    // if not obj or arr, compare
+    else if (object1[key] !== object2[key]) {
+      return false;
     }
   }
-    // if same same , return true
+
   return true;
 };
+// NEW TEST CODE
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true) // => true
 
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), false) // => false
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), false) // => false
+
+assertEqual(eqObjects({ a: { b: 1 }, c: [1, 2, 3] }, { a: { b: 1 }, c: [1, 2, 3] }), true); // => true
+assertEqual(eqObjects({ a: { b: 1 }, c: [1, 2, 3] }, { a: { b: 1 }, c: [3, 2, 1] }), false); // => false
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 2 }, b: 2 }), true); //fail
+assertEqual(eqObjects({ a: { z: 1 }, b: 2 }, { a: { z: 1 }, b: 3 }), true); //fail
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: { z: 1 }, b: 2 }), true); // fail
+assertEqual(eqObjects({ a: { y: 0, z: 1 }, b: 2 }, { a: 1, b: 2 }), true); //fail
+
+
+/* OLD TEST CODE
 // TEST CODE
 const shirtObject = { color: "red", size: "medium" };
 const anotherShirtObject= { size: "medium", color: "red" };
@@ -73,3 +94,4 @@ assertEqual(eqObjects(multiColorShirtObject, anotherMultiColorShirtObject), true
 
 const longSleeveMultiColorShirtObject= { size: "medium", colors: ["red", "blue"], sleeveLength: "long" };
 assertEqual(eqObjects(multiColorShirtObject, longSleeveMultiColorShirtObject), false); // => false
+*/
