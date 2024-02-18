@@ -1,3 +1,6 @@
+const eqArrays = require('./eqArrays');
+
+/* exported from above
 const eqArrays = function(array1, array2) {
   // if the length arrays are different
   if (array1.length !== array2.length) {
@@ -11,7 +14,7 @@ const eqArrays = function(array1, array2) {
   }
   return true;
 };
-
+*/
 
 
 const assertArraysEqual = function(actual, expected) {
@@ -36,6 +39,9 @@ const middle = function(array) {
   }
 };
 
+module.exports = middle;
+
+/* removed for refactoring
 //TEST CODES
 // one/two element = no middle = return empty
 assertArraysEqual(middle([1]), []);
@@ -47,4 +53,4 @@ assertArraysEqual(middle([1, 2, 3, 4, 5]), [3]);
 
 // even number = two elements in the middle returned
 assertArraysEqual(middle([1, 2, 3, 4]), [2, 3]);
-assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]);
+assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]);*/
