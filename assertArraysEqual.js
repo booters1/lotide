@@ -1,4 +1,7 @@
-const eqArrays = function(array1, array2) {
+const eqArrays = require('./eqArrays');
+
+
+/*const eqArrays = function(array1, array2) {
   // if the length arrays are different
   if (array1.length !== array2.length) {
     return false;
@@ -11,12 +14,15 @@ const eqArrays = function(array1, array2) {
   }
   return true;
 };
+*/
 
 const assertArraysEqual = function(actual, expected) {
   const message = eqArrays(actual, expected) ? '✅✅✅pass✅✅✅' : '🛑🛑🛑fail🛑🛑🛑';
   console.log(`${message}: [${actual}] === [${expected}]`);
 };
 
-// TESTS:
+module.exports = assertArraysEqual;
+/* TESTS:
 assertArraysEqual([1, 2, 3], [1, 2, 3]); // should pass
 assertArraysEqual([1, 2, 3], [3, 2, 1]); // should fail
+*/
