@@ -1,6 +1,29 @@
 const tail = require('../tail'); 
-const assertEqual = require('../assertEqual');
-// TEST CODE
+
+const assert = require('chai').assert;
+
+
+describe('#tail', () => {
+  it('should return an array without the first element', () => {
+    const words = ["Zero", "Lighthouse", "Labs"];
+    const result = tail(words);
+    assert.deepEqual(result, ["Lighthouse", "Labs"]);
+    assert.strictEqual(result.length, words.length - 1);
+    assert.strictEqual(result[0], "Lighthouse");
+    assert.strictEqual(result[1], "Labs");
+  });
+
+  it('should not modify the original array', () => {
+    const words = ["Yo Yo", "Lighthouse", "Labs"];
+    tail(words);
+    assert.strictEqual(words.length, 3);
+    assert.strictEqual(words[0], "Yo Yo");
+    assert.strictEqual(words[1], "Lighthouse");
+    assert.strictEqual(words[2], "Labs");
+  });
+});
+
+/*/ TEST CODE
 
 assertEqual("Lighthouse Labs", "Lighthouse Labs"); // pass
 assertEqual(1, 1); // pass
@@ -15,3 +38,4 @@ assertEqual(result1[2], "Labs"); // fail check for 3rd element its undefined
 const words = ["Yo Yo", "Lighthouse", "Labs"];
 tail(words); // no need to capture the return value since we are not checking it
 assertEqual(words.length, 3); // original array should still have 3 elements!
+*/
